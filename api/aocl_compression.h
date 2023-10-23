@@ -105,13 +105,13 @@ typedef enum
  */
 typedef enum
 {
-    LZ4 = 0,
-    LZ4HC,
-    LZMA,
-    BZIP2,
-    SNAPPY,
-    ZLIB,
-    ZSTD,
+    AOCL_LZ4 = 0,
+    AOCL_LZ4HC,
+    AOCL_LZMA,
+    AOCL_BZIP2,
+    AOCL_SNAPPY,
+    AOCL_ZLIB,
+    AOCL_ZSTD,
     AOCL_COMPRESSOR_ALGOS_NUM
 } aocl_compression_type;
 
@@ -121,7 +121,7 @@ typedef enum
  */
 typedef struct
 {
-    char *inBuf;         /**<  Pointer to input buffer data                           */
+    const char *inBuf;   /**<  Pointer to input buffer data                           */
     char *outBuf;        /**<  Pointer to output buffer data                          */
     char *workBuf;       /**<  Pointer to temporary work buffer                       */
     size_t inSize;       /**<  Input data length                                      */                      
@@ -165,7 +165,7 @@ typedef struct
  * | Fail       |`ERR_COMPRESSION_FAILED`          |
  * | ^          |`ERR_COMPRESSION_INVALID_OUTPUT`  |
  */
-EXPORT_SYM_DYN int64_t aocl_llc_compress(aocl_compression_desc *handle,
+EXPORT_SYM_DYN uint32_t aocl_llc_compress(aocl_compression_desc *handle,
                             aocl_compression_type codec_type);
 
 /**
@@ -185,7 +185,7 @@ EXPORT_SYM_DYN int64_t aocl_llc_compress(aocl_compression_desc *handle,
  * 
  */
 
-EXPORT_SYM_DYN int64_t aocl_llc_decompress(aocl_compression_desc *handle,
+EXPORT_SYM_DYN uint32_t aocl_llc_decompress(aocl_compression_desc *handle,
                               aocl_compression_type codec_type);
 
 /**
@@ -216,7 +216,7 @@ EXPORT_SYM_DYN int32_t aocl_llc_setup(aocl_compression_desc *handle,
  * | \b handle     | in,out  | This acts as a handle for compression and decompression. For more information, refer to aocl_compression_desc. |
  * | \b codec_type | in      | Select the algorithm to be used for compression, choose from aocl_compression_type. |
  * 
- * @return void 
+ * return void 
  */
 EXPORT_SYM_DYN void aocl_llc_destroy(aocl_compression_desc *handle,
                         aocl_compression_type codec_type);

@@ -44,10 +44,10 @@
 static INT32 enableLogs = 0;
 
 //Unified API function to compress the input
-INT64 aocl_llc_compress(aocl_compression_desc *handle,
+UINT32 aocl_llc_compress(aocl_compression_desc *handle,
                         aocl_compression_type codec_type)
 {
-    INT64 ret;
+    UINT32 ret;
 #ifdef WIN32
     timer clkTick;
 #endif
@@ -82,10 +82,10 @@ INT64 aocl_llc_compress(aocl_compression_desc *handle,
 }
 
 //Unified API function to decompress the input
-INT64 aocl_llc_decompress(aocl_compression_desc *handle,
+UINT32 aocl_llc_decompress(aocl_compression_desc *handle,
                           aocl_compression_type codec_type)
 {
-    INT64 ret;
+    UINT32 ret;
 #ifdef WIN32
     timer clkTick;
 #endif
@@ -127,7 +127,7 @@ INT32 aocl_llc_setup(aocl_compression_desc *handle,
 
     LOG_UNFORMATTED(TRACE, enableLogs, "Enter");
 
-    if ((codec_type < LZ4) || (codec_type >= AOCL_COMPRESSOR_ALGOS_NUM))
+    if ((codec_type < AOCL_LZ4) || (codec_type >= AOCL_COMPRESSOR_ALGOS_NUM))
     {
         LOG_UNFORMATTED(ERR, enableLogs,
             "setup failed !! compression method is not supported.");

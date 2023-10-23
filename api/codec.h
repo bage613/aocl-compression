@@ -40,7 +40,7 @@
 #ifndef CODEC_H
 #define CODEC_H
 
-typedef INT64 (*comp_decomp_fp)(CHAR *inStream, UINTP inSize, CHAR *outStream,
+typedef UINT32 (*comp_decomp_fp)(const CHAR *inStream, UINTP inSize, CHAR *outStream,
                                 UINTP outSize, UINTP, UINTP, CHAR*);
 typedef CHAR* (*setup_fp)(INTP optOff, INTP optLevel, UINTP inSize, UINTP,
                           UINTP);
@@ -48,9 +48,9 @@ typedef VOID  (*destroy_fp)(CHAR *memBuff);
 
 //Method 1
 #ifndef AOCL_EXCLUDE_BZIP2
-        INT64 aocl_bzip2_compress(CHAR *inBuf, UINTP inSize, CHAR *outBuf,
+        UINT32 aocl_bzip2_compress(const CHAR *inBuf, UINTP inSize, CHAR *outBuf,
                          UINTP outSize, UINTP level, UINTP optVar, CHAR *workBuf);
-        INT64 aocl_bzip2_decompress(CHAR *inBuf, UINTP inSize, CHAR *outBuf,
+        UINT32 aocl_bzip2_decompress(const CHAR *inBuf, UINTP inSize, CHAR *outBuf,
                          UINTP outSize, UINTP level, UINTP optVar, CHAR *workBuf);
         CHAR *aocl_bzip2_setup(INTP optOff, INTP optLevel,
                            UINTP insize, UINTP level, UINTP windowLog);
@@ -61,9 +61,9 @@ typedef VOID  (*destroy_fp)(CHAR *memBuff);
 #endif
 //Method 2
 #ifndef AOCL_EXCLUDE_LZ4
-        INT64 aocl_lz4_compress(CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
+        UINT32 aocl_lz4_compress(const CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
                          UINTP outSize, UINTP level, UINTP optVar, CHAR *workBuf);
-        INT64 aocl_lz4_decompress(CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
+        UINT32 aocl_lz4_decompress(const CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
                          UINTP outSize, UINTP level, UINTP optVar, CHAR *workBuf);
         CHAR *aocl_lz4_setup(INTP optOff, INTP optLevel,
                          UINTP insize, UINTP level, UINTP windowLog);
@@ -74,9 +74,9 @@ typedef VOID  (*destroy_fp)(CHAR *memBuff);
 #endif
 //Method 3
 #if !defined(AOCL_EXCLUDE_LZ4HC) && !defined(AOCL_EXCLUDE_LZ4)
-        INT64 aocl_lz4hc_compress(CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
+        UINT32 aocl_lz4hc_compress(const CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
                          UINTP outSize, UINTP level, UINTP optVar, CHAR *workBuf);
-        INT64 aocl_lz4hc_decompress(CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
+        UINT32 aocl_lz4hc_decompress(const CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
                          UINTP outSize, UINTP level, UINTP optVar, CHAR *workBuf);
         CHAR *aocl_lz4hc_setup(INTP optOff, INTP optLevel,
                          UINTP insize, UINTP level, UINTP windowLog);
@@ -87,9 +87,9 @@ typedef VOID  (*destroy_fp)(CHAR *memBuff);
 #endif
 //Method 4
 #ifndef AOCL_EXCLUDE_LZMA
-        INT64 aocl_lzma_compress(CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
+        UINT32 aocl_lzma_compress(const CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
                          UINTP outSize, UINTP level, UINTP optVar, CHAR *workBuf);
-        INT64 aocl_lzma_decompress(CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
+        UINT32 aocl_lzma_decompress(const CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
                          UINTP outSize, UINTP level, UINTP optVar, CHAR *workBuf);
         CHAR *aocl_lzma_setup(INTP optOff, INTP optLevel,
                          UINTP insize, UINTP level, UINTP windowLog);
@@ -100,9 +100,9 @@ typedef VOID  (*destroy_fp)(CHAR *memBuff);
 #endif
 //Method 5
 #ifndef AOCL_EXCLUDE_SNAPPY
-        INT64 aocl_snappy_compress(CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
+        UINT32 aocl_snappy_compress(const CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
                          UINTP outSize, UINTP level, UINTP optVar, CHAR *workBuf);
-        INT64 aocl_snappy_decompress(CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
+        UINT32 aocl_snappy_decompress(const CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
                          UINTP outSize, UINTP level, UINTP optVar, CHAR *workBuf);
         CHAR *aocl_snappy_setup(INTP optOff, INTP optLevel,
                          UINTP insize, UINTP level, UINTP windowLog);
@@ -113,9 +113,9 @@ typedef VOID  (*destroy_fp)(CHAR *memBuff);
 #endif
 //Method 6
 #ifndef AOCL_EXCLUDE_ZLIB
-        INT64 aocl_zlib_compress(CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
+        UINT32 aocl_zlib_compress(const CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
                          UINTP outSize, UINTP level, UINTP optVar, CHAR *workBuf);
-        INT64 aocl_zlib_decompress(CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
+        UINT32 aocl_zlib_decompress(const CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
                          UINTP outSize, UINTP level, UINTP optVar, CHAR *workBuf);
         CHAR *aocl_zlib_setup(INTP optOff, INTP optLevel,
                          UINTP insize, UINTP level, UINTP windowLog);
@@ -126,9 +126,9 @@ typedef VOID  (*destroy_fp)(CHAR *memBuff);
 #endif
 //Method 7
 #ifndef AOCL_EXCLUDE_ZSTD
-        INT64 aocl_zstd_compress(CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
+        UINT32 aocl_zstd_compress(const CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
                          UINTP outSize, UINTP level, UINTP optVar, CHAR *workBuf);
-        INT64 aocl_zstd_decompress(CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
+        UINT32 aocl_zstd_decompress(const CHAR *inBuf, UINTP inSize, CHAR *outBuf, 
                          UINTP outSize, UINTP level, UINTP optVar, CHAR *workBuf);
         CHAR *aocl_zstd_setup(INTP optOff, INTP optLevel,
                          UINTP insize, UINTP level, UINTP windowLog);
